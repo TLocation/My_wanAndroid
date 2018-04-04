@@ -27,7 +27,7 @@ abstract class BaseActivity : AppCompatActivity() {
         immersionBar.init()
         initView()
         loadData()
-        //ssgh
+        //ss
     }
 
     @LayoutRes
