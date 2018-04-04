@@ -1,5 +1,7 @@
 package com.txl.wanandroid.my_wanandroid.net
 
+import com.txl.wanandroid.my_wanandroid.net.response.IResponse
+
 /**
  *
  * 项目名称: 药到家
@@ -34,7 +36,7 @@ abstract class QuestBuilder<T> {
         return this as T
     }
 
-    fun addParams(key: String,value: String):T{
+    fun addParams(key: String, value: String): T {
         params.put(key, value)
         return this as T
     }
@@ -44,7 +46,7 @@ abstract class QuestBuilder<T> {
         return this as T
     }
 
-
+    abstract fun enqueue(iResponse: IResponse)
 
 
 }

@@ -24,4 +24,6 @@ object MyOkhttp {
                 .build()
     }
 
+    fun get():GetBuilder = GetBuilder()
+
 }
