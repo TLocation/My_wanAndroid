@@ -39,8 +39,6 @@ class LoginActivity : BaseActivity() {
         Log.e(TAG, s.toString())
         var e = MyOkhttp
         Log.e(TAG, e.toString())
-Log.e(TAG,MyOkhttp.ss)
-Log.e(TAG,MyOkhttp.s1)
 
     }
 

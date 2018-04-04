@@ -1,5 +1,8 @@
 package com.txl.wanandroid.my_wanandroid.net
 
+import android.os.Looper
+import okhttp3.OkHttpClient
+
 /**
  *
  * 项目名称: 药到家
@@ -13,9 +16,12 @@ package com.txl.wanandroid.my_wanandroid.net
 
 
 object MyOkhttp {
+    lateinit var okHttpClient: OkHttpClient;
+    val hanlder: android.os.Handler = android.os.Handler(Looper.getMainLooper())
 
-fun get(){}
+    init {
+        okHttpClient = OkHttpClient.Builder()
+                .build()
+    }
 
-    val ss="1"
-    const  val s1 = "2"
 }
