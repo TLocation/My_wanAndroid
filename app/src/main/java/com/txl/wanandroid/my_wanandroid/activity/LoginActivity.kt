@@ -29,6 +29,7 @@ class LoginActivity : BaseActivity() {
 
         var editText = login_username.editText
         regist.setOnClickListener {
+            //
             if (username.text.isNullOrBlank())
                 login_username.error = getString(R.string.login_pwd_empty).toString()
             login_username.isErrorEnabled = true
