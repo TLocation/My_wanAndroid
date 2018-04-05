@@ -14,7 +14,9 @@ import okhttp3.OkHttpClient
  * 修改时间:
  */
 
-
+/**
+ * 单例的声明方式
+ */
 object MyOkhttp {
     lateinit var okHttpClient: OkHttpClient;
     val hanlder: android.os.Handler = android.os.Handler(Looper.getMainLooper())

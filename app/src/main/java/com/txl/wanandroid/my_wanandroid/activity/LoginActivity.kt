@@ -22,13 +22,18 @@ import okhttp3.Response
 
 class LoginActivity : BaseActivity() {
 
-
+    /**
+     * 相当于懒加载  第一次调用才会初始化  只试用与val类型
+     */
     val username: EditText by lazy { login_username.editText!! }
     val pwd: EditText by lazy { login_pwd.editText!! }
 
     override fun initView() {
 
         var editText = login_username.editText
+        /**
+         * kotlin的lab表达式
+         */
         regist.setOnClickListener {
             //tijiao
             if (username.text.isNullOrBlank())
@@ -56,6 +61,6 @@ class LoginActivity : BaseActivity() {
 
                     override fun onFeail(statCode: Int, errorMsg: String?) {
                     }
-                });
+                })
     }
 }

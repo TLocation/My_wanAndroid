@@ -18,6 +18,10 @@ import com.gyf.barlibrary.ImmersionBar
 
 
 abstract class BaseActivity : AppCompatActivity() {
+    /**
+     * 常亮 val  变量 var
+     *
+     */
     protected val TAG = javaClass.simpleName
     lateinit var immersionBar: ImmersionBar
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,15 +33,24 @@ abstract class BaseActivity : AppCompatActivity() {
         loadData()
         //ssa
     }
-
+    /**
+     * 方法申明  fun  格式  fun 名字（）：返回值
+     * 这个方法返回值为int类型
+     */
     @LayoutRes
     protected abstract fun getLayoutId(): Int
 
+    /**
+     * 方法申明  fun  格式  fun 名字（）：返回值
+     */
     protected abstract fun initView()
 
     protected abstract  fun loadData()
 
 
+    /**
+     * 重写方法  需要加override 参数
+     */
     override fun onDestroy() {
         super.onDestroy()
         immersionBar.destroy()
