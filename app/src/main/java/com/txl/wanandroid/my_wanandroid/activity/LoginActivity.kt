@@ -1,12 +1,13 @@
 package com.txl.wanandroid.my_wanandroid.activity
 
+import android.util.Log
 import android.widget.EditText
 import com.txl.wanandroid.my_wanandroid.R
 import com.txl.wanandroid.my_wanandroid.base.BaseActivity
+import com.txl.wanandroid.my_wanandroid.bean.TestOne
 import com.txl.wanandroid.my_wanandroid.net.MyOkhttp
-import com.txl.wanandroid.my_wanandroid.net.response.IResponse
+import com.txl.wanandroid.my_wanandroid.net.response.GsonResponse
 import kotlinx.android.synthetic.main.activity_login.*
-import okhttp3.Response
 
 /**
  *
@@ -52,15 +53,15 @@ class LoginActivity : BaseActivity() {
 
     override fun loadData() {
         MyOkhttp.get()
-                .url("https://blog.csdn.net/Amethyst128/article/details/73608680")
-                .addParams("1", "11")
-                .addParams("2", "22")
-                .enqueue(object : IResponse {
-                    override fun onSuccful(response: Response) {
-                    }
-
+                .url("http://www.wanandroid.com/tools/mockapi/428/yc")
+                .enqueue(object : GsonResponse<TestOne>() {
                     override fun onFeail(statCode: Int, errorMsg: String?) {
                     }
+
+                    override fun onSuccful(statCode: Int, response: TestOne) {
+                        Log.e(TAG,"testone===>${response.ss}")
+                    }
                 })
+
     }
 }
