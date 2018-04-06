@@ -1,8 +1,10 @@
 package com.txl.wanandroid.my_wanandroid.base
 
+import android.content.Context
 import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
 import com.gyf.barlibrary.ImmersionBar
 
 /**
@@ -33,6 +35,7 @@ abstract class BaseActivity : AppCompatActivity() {
         loadData()
         //ssa
     }
+
     /**
      * 方法申明  fun  格式  fun 名字（）：返回值
      * 这个方法返回值为int类型
@@ -45,7 +48,7 @@ abstract class BaseActivity : AppCompatActivity() {
      */
     protected abstract fun initView()
 
-    protected abstract  fun loadData()
+    protected abstract fun loadData()
 
 
     /**
@@ -57,6 +60,8 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
 
-
+    fun Context.toast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
 
 }

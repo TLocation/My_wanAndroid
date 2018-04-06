@@ -52,7 +52,6 @@ class LoginActivity : BaseActivity() {
 
     override fun loadData() {
 
-
     }
 
     fun get(a: Int, b: Int, pardsa: (a: Int, b: Int) -> Boolean): Int {
