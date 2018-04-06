@@ -55,4 +55,8 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onDestroy()
         immersionBar.destroy()
     }
+
+
+
+
 }
