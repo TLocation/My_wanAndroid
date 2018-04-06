@@ -18,7 +18,7 @@ import okhttp3.Request
 class GetBuilder : QuestBuilder<GetBuilder>() {
     override fun enqueue(iResponse: IResponse) {
         var builder = Request.Builder()
-       if(params.size>0)append(url, params)
+        if (params.size > 0) url = append(url, params)
         builder.url(url)
         builder.get()
         MyOkhttp.okHttpClient.newCall(builder.build()).enqueue(MyCallBack(iResponse))
@@ -26,7 +26,9 @@ class GetBuilder : QuestBuilder<GetBuilder>() {
 
     private fun append(url: String, params: HashMap<String, String>): String {
         val builder = StringBuilder()
+
         return builder.apply {
+            builder.append(url + "?")
             for ((key, value) in params) {
                 append(key)
                 append("=")

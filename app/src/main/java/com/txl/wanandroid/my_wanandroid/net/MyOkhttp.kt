@@ -1,6 +1,7 @@
 package com.txl.wanandroid.my_wanandroid.net
 
 import android.os.Looper
+import com.txl.wanandroid.my_wanandroid.net.cookie.CookieManager
 import okhttp3.OkHttpClient
 
 /**
@@ -18,14 +19,15 @@ import okhttp3.OkHttpClient
  * 单例的声明方式
  */
 object MyOkhttp {
-    lateinit var okHttpClient: OkHttpClient;
+     var okHttpClient: OkHttpClient;
     val hanlder: android.os.Handler = android.os.Handler(Looper.getMainLooper())
 
     init {
         okHttpClient = OkHttpClient.Builder()
+                .cookieJar(CookieManager())
                 .build()
     }
 
-    fun get():GetBuilder = GetBuilder()
-
+    fun get(): GetBuilder = GetBuilder()
+    fun post(): PostBuilder = PostBuilder()
 }

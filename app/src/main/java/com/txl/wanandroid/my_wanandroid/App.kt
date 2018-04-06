@@ -15,9 +15,15 @@ import com.txl.wanandroid.my_wanandroid.utils.PreferenceUtils
  */
 
 
-class App :Application() {
+class App : Application() {
     override fun onCreate() {
         super.onCreate()
+        app = this
         PreferenceUtils.setContext(applicationContext)
+    }
+
+    companion object {
+        var app: App? = null
+        fun getInstance() = app
     }
 }

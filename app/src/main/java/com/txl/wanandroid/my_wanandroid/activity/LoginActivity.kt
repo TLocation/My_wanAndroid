@@ -27,6 +27,7 @@ class LoginActivity : BaseActivity() {
     val username: EditText by lazy { login_username.editText!! }
     val pwd: EditText by lazy { login_pwd.editText!! }
     var name: String by PreferenceUtils<String>("isLogin", "测试")
+    var test: String by PreferenceUtils<String>("sss", "测试")
     override fun initView() {
 
         var editText = login_username.editText
@@ -39,8 +40,9 @@ class LoginActivity : BaseActivity() {
                 login_username.error = getString(R.string.login_pwd_empty).toString()
                 login_username.isErrorEnabled = true
             }
-            Toast.makeText(this,name,Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, name, Toast.LENGTH_SHORT).show()
             name = "田晓龙"
+            test = "张超"
         }
 
     }

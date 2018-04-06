@@ -3,7 +3,7 @@ package com.txl.wanandroid.my_wanandroid.utils
 /**
  *
  * 项目名称: WanAndroid
- * 类描述:
+ * 类描述:存放网址
  * 创建人: 田晓龙
  * 创建时间: 2018/4/6 0006 19:53
  * 修改人:
@@ -13,4 +13,12 @@ package com.txl.wanandroid.my_wanandroid.utils
 
 
 object UrlUtils {
+
+    private const val BASE_URL = "http://www.wanandroid.com/"
+
+    /**
+     * 登录
+     */
+    const  val LOGIN_URL =BASE_URL+"user/login"
+
 }

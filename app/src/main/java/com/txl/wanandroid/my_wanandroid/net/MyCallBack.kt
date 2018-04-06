@@ -19,7 +19,7 @@ import java.io.IOException
 
 
 class MyCallBack(iResponse: IResponse) : Callback {
-    private lateinit var iResponse: IResponse
+    private  var iResponse: IResponse
 
     init {
         this.iResponse = iResponse

@@ -21,8 +21,7 @@ import java.lang.reflect.Type
 
 abstract class GsonResponse<T> : IResponse {
     val gson: Gson by lazy { Gson() }
-    lateinit var type: Type
-
+     var type: Type
     init {
         var myClass = javaClass.genericSuperclass
         if (myClass is Class<*>) {
