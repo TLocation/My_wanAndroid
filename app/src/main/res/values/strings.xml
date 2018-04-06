@@ -2,4 +2,15 @@
     <string name="app_name">My_wanAndroid</string>
     <string name="login_pwd_empty">密码不能为空</string>
     <string name="login_pwd_error">密码错误</string>
+    <string name="title_activity_home2">Home2Activity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="home_bottom_home">首页</string>
+    <string name="home_bottom_knowledge">知识体系</string>
+    <string name="home_bottom_navigation">导航</string>
+    <string name="home_bottom_project">项目</string>
+
+    <string name="action_settings">Settings</string>
 </resources>
