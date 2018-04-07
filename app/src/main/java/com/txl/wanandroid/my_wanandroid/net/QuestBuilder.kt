@@ -1,6 +1,7 @@
 package com.txl.wanandroid.my_wanandroid.net
 
 import com.txl.wanandroid.my_wanandroid.net.response.IResponse
+import okhttp3.Request
 
 /**
  *
@@ -48,5 +49,11 @@ abstract class QuestBuilder<T> {
 
     abstract fun enqueue(iResponse: IResponse)
 
+
+    fun appendHeaders(builder:Request.Builder,headers: HashMap<String, String>){
+        for((key,value) in headers){
+            builder.addHeader(key,value)
+        }
+    }
 
 }

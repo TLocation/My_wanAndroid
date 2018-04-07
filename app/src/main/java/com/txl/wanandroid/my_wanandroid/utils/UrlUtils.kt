@@ -19,6 +19,13 @@ object UrlUtils {
     /**
      * 登录
      */
-    const  val LOGIN_URL =BASE_URL+"user/login"
+    const val LOGIN_URL = BASE_URL + "user/login"
+
+
+    /**
+     * 我的收藏列表
+     */
+    val GET_LIKE_LIST = { page: Int -> BASE_URL + "lg/collect/list/$page/json" }
+
 
 }

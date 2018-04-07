@@ -1,5 +1,6 @@
 package com.txl.wanandroid.my_wanandroid.net
 
+import android.util.Log
 import com.txl.wanandroid.my_wanandroid.net.response.IResponse
 import okhttp3.Call
 import okhttp3.Callback
@@ -26,7 +27,7 @@ class MyCallBack(iResponse: IResponse) : Callback {
     }
 
     override fun onFailure(call: Call?, e: IOException?) {
-
+   Log.e("LoginActivity","error==>${e!!.message}+----${e.toString()}")
     }
 
     override fun onResponse(call: Call?, response: Response?) {

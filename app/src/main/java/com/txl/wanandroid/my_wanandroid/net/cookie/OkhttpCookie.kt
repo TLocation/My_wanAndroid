@@ -1,5 +1,7 @@
 package com.txl.wanandroid.my_wanandroid.net.cookie
 
+import android.os.Parcel
+import android.os.Parcelable
 import okhttp3.Cookie
 
 /**
@@ -14,6 +16,63 @@ import okhttp3.Cookie
  */
 
 
-data class OkhttpCookie(var cookies:Cookie, var clientCookies: Cookie?){
-    constructor(cookies: Cookie) : this(cookies,null)
+data class OkhttpCookie(var cookies: Cookie?, var clientCookies: Cookie?) : Parcelable {
+    constructor(cookies: Cookie) : this(cookies, null)
+
+    val EMPTY = "empty"
+
+    constructor(source: Parcel) : this(null,null) {
+
+        //            source.readCookie(),
+//            source.readCookie()
+//            source.readValue(ClassLoader.getSystemClassLoader()) as Cookie,
+//            source.readValue(ClassLoader.getSystemClassLoader()) as Cookie
+        var name = source.readValue(ClassLoader.getSystemClassLoader()) as String
+        var value = source.readValue(ClassLoader.getSystemClassLoader()) as String
+        var expiresAt = source.readLong()
+        var domain = source.readValue(ClassLoader.getSystemClassLoader()) as String
+        var path = source.readValue(ClassLoader.getSystemClassLoader()) as String
+        var secure = source.readValue(ClassLoader.getSystemClassLoader()) as Boolean
+        var httpOnly = source.readValue(ClassLoader.getSystemClassLoader()) as Boolean
+        var hostOnly = source.readValue(ClassLoader.getSystemClassLoader()) as Boolean
+        var builder = Cookie.Builder()
+        builder.name(name)
+        builder.value(value)
+        builder.expiresAt(expiresAt)
+        builder = if (hostOnly) builder.hostOnlyDomain(domain) else builder.domain(domain)
+        builder = builder.path(path)
+        builder = if (secure) builder.secure() else builder
+        builder = if (httpOnly) builder.httpOnly() else builder
+        cookies = builder.build()
+        clientCookies = builder.build()
+
+    }
+
+
+
+
+    override fun describeContents() = 0
+
+    override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
+        //        writeValue(cookies)
+//        writeValue(clientCookies)
+        writeValue(cookies!!.name())
+        writeValue(cookies!!.value())
+        writeValue(cookies!!.expiresAt())
+        writeValue(cookies!!.domain())
+        writeValue(cookies!!.path())
+        writeValue(cookies!!.secure())
+        writeValue(cookies!!.httpOnly())
+        writeValue(cookies!!.hostOnly())
+        writeValue(cookies!!.persistent())
+    }
+
+
+    companion object {
+        @JvmField
+        val CREATOR: Parcelable.Creator<OkhttpCookie> = object : Parcelable.Creator<OkhttpCookie> {
+            override fun createFromParcel(source: Parcel): OkhttpCookie = OkhttpCookie(source)
+            override fun newArray(size: Int): Array<OkhttpCookie?> = arrayOfNulls(size)
+        }
+    }
 }

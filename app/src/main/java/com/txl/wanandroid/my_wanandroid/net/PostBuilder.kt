@@ -27,6 +27,7 @@ class PostBuilder : QuestBuilder<PostBuilder>() {
             url(url)
             var bodyBuilder = FormBody.Builder()
             appendParams(bodyBuilder, params)
+            appendHeaders(builder, headlers)
             post(bodyBuilder.build())
         }
         MyOkhttp.okHttpClient.newCall(builder.build()).enqueue(MyCallBack(iResponse))

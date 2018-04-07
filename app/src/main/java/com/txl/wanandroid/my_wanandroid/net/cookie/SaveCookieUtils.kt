@@ -86,7 +86,7 @@ class SaveCookieUtils {
          */
         sharedPreferences.edit().apply {
             putString(url.host(), TextUtils.join(",", cookies.get(url.host())!!.entries))
-            putString(name, encodeCookie(OkhttpCookie(cookie)))
+            putString(name, encodeCookie(Twat(cookie)))
         }.apply()
 
 
@@ -135,7 +135,7 @@ class SaveCookieUtils {
     /**
      * cookie序列化成String
      */
-    fun encodeCookie(cookie: OkhttpCookie): String? {
+    fun encodeCookie(cookie: Twat): String? {
         if (cookie == null) return null
         var byteArrayOutputStream = ByteArrayOutputStream()
         var objectOutPutStream = ObjectOutputStream(byteArrayOutputStream)
@@ -152,8 +152,9 @@ class SaveCookieUtils {
         val byteArryInputStream = ByteArrayInputStream(hexStringToByteArray)
         var cookie: Cookie? = null
         val objectInputStream = ObjectInputStream(byteArryInputStream)
-        val okhttpCookie = objectInputStream.readObject() as OkhttpCookie
-        cookie = if (okhttpCookie.clientCookies != null) okhttpCookie.clientCookies else okhttpCookie.cookies
+        val okhttpCookie = objectInputStream.readObject() as Twat
+//        cookie = if (okhttpCookie.clientCookies != null) okhttpCookie.clientCookies else okhttpCookie.cookies
+        cookie =okhttpCookie.cookies
         return cookie!!
     }
 

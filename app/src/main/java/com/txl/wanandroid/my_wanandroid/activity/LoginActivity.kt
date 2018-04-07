@@ -1,10 +1,12 @@
 package com.txl.wanandroid.my_wanandroid.activity
 
+import android.util.Log
 import android.widget.EditText
-import android.widget.Toast
 import com.txl.wanandroid.my_wanandroid.R
 import com.txl.wanandroid.my_wanandroid.base.BaseActivity
-import com.txl.wanandroid.my_wanandroid.utils.PreferenceUtils
+import com.txl.wanandroid.my_wanandroid.net.MyOkhttp
+import com.txl.wanandroid.my_wanandroid.net.response.RawResponse
+import com.txl.wanandroid.my_wanandroid.utils.UrlUtils
 import kotlinx.android.synthetic.main.activity_login.*
 
 /**
@@ -26,8 +28,6 @@ class LoginActivity : BaseActivity() {
      */
     val username: EditText by lazy { login_username.editText!! }
     val pwd: EditText by lazy { login_pwd.editText!! }
-    var name: String by PreferenceUtils<String>("isLogin", "测试")
-    var test: String by PreferenceUtils<String>("sss", "测试")
     override fun initView() {
 
         var editText = login_username.editText
@@ -40,11 +40,31 @@ class LoginActivity : BaseActivity() {
                 login_username.error = getString(R.string.login_pwd_empty).toString()
                 login_username.isErrorEnabled = true
             }
-            Toast.makeText(this, name, Toast.LENGTH_SHORT).show()
-            name = "田晓龙"
-            test = "张超"
-        }
 
+            MyOkhttp.post().url(UrlUtils.LOGIN_URL)
+                    .addParams("username", "tianxiaolong")
+                    .addParams("password", "tianxiaolong")
+                    .enqueue(object : RawResponse() {
+                        override fun onFeail(statCode: Int, errorMsg: String?) {
+                            Log.e(TAG, "fail login==response===>$errorMsg")
+                        }
+
+                        override fun onSuccful(statCode: Int, response: String) {
+                            Log.e(TAG, "login==response===>$response")
+                        }
+                    })
+        }
+        login.setOnClickListener { MyOkhttp
+                .get()
+                .url(UrlUtils.GET_LIKE_LIST(0))
+                .enqueue(object : RawResponse(){
+                    override fun onFeail(statCode: Int, errorMsg: String?) {
+                    }
+
+                    override fun onSuccful(statCode: Int, response: String) {
+                        Log.e(TAG, "list==response===>$response")
+                    }
+                })}
     }
 
 

@@ -20,6 +20,7 @@ class GetBuilder : QuestBuilder<GetBuilder>() {
         var builder = Request.Builder()
         if (params.size > 0) url = append(url, params)
         builder.url(url)
+        appendHeaders(builder,headlers)
         builder.get()
         MyOkhttp.okHttpClient.newCall(builder.build()).enqueue(MyCallBack(iResponse))
     }
