@@ -33,7 +33,6 @@ abstract class BaseActivity : AppCompatActivity() {
         immersionBar.init()
         initView()
         loadData()
-        //ssa
     }
 
     /**
@@ -63,5 +62,7 @@ abstract class BaseActivity : AppCompatActivity() {
     fun Context.toast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
+
+
 
 }

@@ -27,5 +27,11 @@ object UrlUtils {
      */
     val GET_LIKE_LIST = { page: Int -> BASE_URL + "lg/collect/list/$page/json" }
 
+    /**
+     * /article/list/page/json
+     */
+
+    val GET_HOME_LIST = { page: Int -> BASE_URL + "article/list/$page/json" }
+
 
 }

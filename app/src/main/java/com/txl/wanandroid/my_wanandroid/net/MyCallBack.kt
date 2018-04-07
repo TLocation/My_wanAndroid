@@ -20,14 +20,15 @@ import java.io.IOException
 
 
 class MyCallBack(iResponse: IResponse) : Callback {
-    private  var iResponse: IResponse
+    private var iResponse: IResponse
 
     init {
         this.iResponse = iResponse
     }
 
     override fun onFailure(call: Call?, e: IOException?) {
-   Log.e("LoginActivity","error==>${e!!.message}+----${e.toString()}")
+        Log.e("LoginActivity", "error==>${e!!.message}+----${e.toString()}")
+        MyOkhttp.hanlder.post { iResponse.onFeail(0, e.message) }
     }
 
     override fun onResponse(call: Call?, response: Response?) {
