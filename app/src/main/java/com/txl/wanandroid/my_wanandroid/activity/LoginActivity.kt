@@ -45,8 +45,4 @@ class LoginActivity : BaseActivity() {
     }
 
 
-
-
-
-
 }

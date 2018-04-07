@@ -29,9 +29,13 @@ object UrlUtils {
 
     /**
      * /article/list/page/json
+     * 首页文章列表
      */
-
-    val GET_HOME_LIST = { page: Int -> BASE_URL + "article/list/$page/json" }
+    val GET_HOME_ARTICLE_LIST = { page: Int -> BASE_URL + "article/list/$page/json" }
+    /**
+     * 首页轮播图
+     */
+    const val HOME_BANNER = "${BASE_URL}banner/json"
 
 
 }
