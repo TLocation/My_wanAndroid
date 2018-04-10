@@ -1,6 +1,10 @@
 package com.txl.wanandroid.my_wanandroid.fragment
 
+import android.support.v7.widget.LinearLayoutManager
+import android.view.View
+import android.widget.AdapterView
 import com.txl.wanandroid.my_wanandroid.R
+import com.txl.wanandroid.my_wanandroid.adapter.HomeListAdapter
 import com.txl.wanandroid.my_wanandroid.base.BaseFragment
 import com.txl.wanandroid.my_wanandroid.bean.home.HomeList
 import com.txl.wanandroid.my_wanandroid.net.MyOkhttp
@@ -17,8 +21,11 @@ import kotlinx.android.synthetic.main.fragment_home.*
  * 修改内容:
  * 修改时间:
  */
-class HomeFragment : BaseFragment() {
+class HomeFragment : BaseFragment(), AdapterView.OnItemClickListener {
 
+    lateinit var homeList : ArrayList<HomeList.Data.Data>
+
+    var PAGE : Int = 0
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_home
@@ -26,21 +33,38 @@ class HomeFragment : BaseFragment() {
 
     override fun init() {
 
-        fragment_home_rll
+        homeList = ArrayList()
+
+        var manager = LinearLayoutManager(activity)
+
+        manager.orientation = LinearLayoutManager.VERTICAL
+
+        fragment_home_rll.layoutManager = manager
+
+        val listAdapter = HomeListAdapter(21, homeList, this)
+
+        fragment_home_rll.adapter = listAdapter
+
     }
 
     override fun loadData() {
 
-        MyOkhttp.get().url(UrlUtils.GET_HOME_ARTICLE_LIST(0)).enqueue(object : GsonResponse<HomeList>() {
+        MyOkhttp.get().url(UrlUtils.GET_HOME_ARTICLE_LIST(PAGE)).enqueue(object : GsonResponse<HomeList>() {
             override fun onFeail(statCode: Int, errorMsg: String?) {
                 toast(errorMsg!!)
             }
 
             override fun onSuccful(statCode: Int, response: HomeList) {
-                toast(response.toString())
+                homeList.addAll(response.data.datas)
             }
 
         })
+
+
+
+    }
+
+    override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
 
     }
 }
