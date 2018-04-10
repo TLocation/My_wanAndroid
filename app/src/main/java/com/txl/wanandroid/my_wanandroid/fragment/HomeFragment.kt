@@ -23,9 +23,11 @@ import kotlinx.android.synthetic.main.fragment_home.*
  */
 class HomeFragment : BaseFragment(), AdapterView.OnItemClickListener {
 
-    lateinit var homeList : ArrayList<HomeList.Data.Data>
+    lateinit var homeList: ArrayList<HomeList.Data.Data>
 
-    var PAGE : Int = 0
+    lateinit var listAdapter: HomeListAdapter
+
+    var PAGE: Int = 0
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_home
@@ -41,7 +43,7 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemClickListener {
 
         fragment_home_rll.layoutManager = manager
 
-        val listAdapter = HomeListAdapter(21, homeList, this)
+        listAdapter = HomeListAdapter(R.layout.home_list_item, homeList, this)
 
         fragment_home_rll.adapter = listAdapter
 
@@ -49,22 +51,25 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemClickListener {
 
     override fun loadData() {
 
-        MyOkhttp.get().url(UrlUtils.GET_HOME_ARTICLE_LIST(PAGE)).enqueue(object : GsonResponse<HomeList>() {
-            override fun onFeail(statCode: Int, errorMsg: String?) {
-                toast(errorMsg!!)
-            }
+        MyOkhttp.get()
+                .url(UrlUtils.GET_HOME_ARTICLE_LIST(PAGE)).enqueue(object : GsonResponse<HomeList>() {
+                    override fun onFeail(statCode: Int, errorMsg: String?) {
+                        toast(errorMsg!!)
+                    }
 
-            override fun onSuccful(statCode: Int, response: HomeList) {
-                homeList.addAll(response.data.datas)
-            }
+                    override fun onSuccful(statCode: Int, response: HomeList) {
+                        homeList.addAll(response.data.datas)
 
-        })
+                        listAdapter.refresh(homeList)
+                    }
 
-
+                })
 
     }
 
     override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+
+        toast("跳转...$p2")
 
     }
 }
