@@ -78,6 +78,7 @@ abstract class BaseRecylerAdapter<T>(layouts: IntArray, dataList: Collection<T>)
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder?, position: Int) {
+        conver(holder!!,dataList.get(position),position,getItemViewType(position))
     }
 
     /**
