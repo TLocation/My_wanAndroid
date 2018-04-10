@@ -1,13 +1,9 @@
 package com.txl.wanandroid.my_wanandroid.base
 
-import android.database.DataSetObservable
-import android.database.DataSetObserver
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.ListAdapter
 
 /**
  *
@@ -21,63 +17,23 @@ import android.widget.ListAdapter
  */
 
 
-abstract class BaseRecyclerAdapter<T>(layouts: IntArray, dataList: Collection<T>) : RecyclerView.Adapter<BaseViewHolder>(), ListAdapter {
+abstract class BaseRecyclerAdapter<T>(layouts: IntArray, dataList: Collection<T>) : RecyclerView.Adapter<BaseViewHolder>() {
     protected val layouts: IntArray = layouts
     protected var dataList: ArrayList<T> = ArrayList<T>(dataList)
 
     protected var onItemClickListener: AdapterView.OnItemClickListener? = null
-    private var observable: DataSetObservable = DataSetObservable()
-    override fun registerDataSetObserver(p0: DataSetObserver?) {
-        observable.registerObserver(p0)
-    }
-
-    override fun unregisterDataSetObserver(p0: DataSetObserver?) {
-        observable.unregisterObserver(p0)
-    }
-
-    override fun getViewTypeCount(): Int {
-        return 0
-    }
-
-    override fun getItem(p0: Int): Any {
-        return 1;
-    }
-
-    override fun isEmpty(): Boolean {
-        return false
-    }
-
-    override fun isEnabled(p0: Int): Boolean {
-        return false
-    }
-
-    override fun getView(p0: Int, p1: View?, parent: ViewGroup?): View {
-        return LayoutInflater.from(parent!!.context).inflate(layouts[0], parent, false)
-    }
-
-    override fun areAllItemsEnabled(): Boolean {
-        return false;
-    }
-
-    override fun getCount(): Int {
-        return dataList.size
-    }
-
     fun refresh(data: Collection<T>? = null) {
         dataList.clear()
         dataList.addAll(data!!)
         notifyDataSetChanged()
-        notifyListDataSetChanged()
     }
 
     fun loadMore(data: Collection<T>) {
         dataList.addAll(data)
         notifyDataSetChanged()
-        notifyListDataSetChanged()
     }
 
 
-    fun notifyListDataSetChanged() = observable.notifyChanged()
 
 
     constructor(layout: Int, dataList: Collection<T>) : this(intArrayOf(layout), dataList)

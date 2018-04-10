@@ -8,6 +8,12 @@
     android:paddingTop="@dimen/layout_paddingTop"
     tools:context="com.txl.wanandroid.my_wanandroid.activity.HomeActivity">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:background="@color/black"></FrameLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -50,6 +56,7 @@
             android:weightSum="4">
 
             <RadioButton
+                android:id="@+id/radio_homePage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -62,6 +69,7 @@
                 android:textColor="@color/gray_home" />
 
             <RadioButton
+                android:id="@+id/radio_knowledge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -72,6 +80,7 @@
                 android:textColor="@color/gray_home" />
 
             <RadioButton
+                android:id="@+id/radio_navigation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -82,6 +91,7 @@
                 android:textColor="@color/gray_home" />
 
             <RadioButton
+                android:id="@+id/radio_project"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

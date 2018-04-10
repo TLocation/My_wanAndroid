@@ -2,8 +2,6 @@ package com.txl.wanandroid.my_wanandroid.base
 
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
-import com.txl.wanandroid.my_wanandroid.fragment.HomeFragment
-import kotlin.reflect.KClass
 
 /**
  *
@@ -42,7 +40,7 @@ class BaseFragmentBuilder() {
     }
 
     fun add(resid: Int): BaseFragmentBuilder {
-        transaction.add(resid, fragment, simpletName)
+        if (manager.findFragmentByTag(simpletName) == null) transaction.add(resid, fragment, simpletName)
         fragmentMap.get(resid)?.let { transaction.hide(it) }
         transaction.show(fragment)
         fragmentMap.put(resid, fragment)

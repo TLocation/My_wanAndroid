@@ -1,11 +1,13 @@
 package com.txl.wanandroid.my_wanandroid.activity
 
+import android.widget.RadioGroup
 import com.txl.wanandroid.my_wanandroid.R
 import com.txl.wanandroid.my_wanandroid.base.BaseActivity
 import com.txl.wanandroid.my_wanandroid.base.BaseFragmentBuilder
 import com.txl.wanandroid.my_wanandroid.fragment.HomeFragment
+import kotlinx.android.synthetic.main.activity_home.*
 
-class HomeActivity : BaseActivity() {
+class HomeActivity : BaseActivity(), RadioGroup.OnCheckedChangeListener {
 
 
     override fun getLayoutId(): Int {
@@ -13,8 +15,7 @@ class HomeActivity : BaseActivity() {
     }
 
     override fun initView() {
-
-
+        home_group.setOnCheckedChangeListener(this)
     }
 
     override fun loadData() {
@@ -22,6 +23,22 @@ class HomeActivity : BaseActivity() {
                 .start(HomeFragment::class.java)
                 .add(R.id.home_content).commit()
 
+    }
+
+    /**
+     * radioButton的点击事件
+     */
+    override fun onCheckedChanged(radioGroup: RadioGroup?, checkId: Int) {
+        when (checkId) {
+            R.id.radio_homePage -> BaseFragmentBuilder.getInstance(this)
+                    .start(HomeFragment::class.java)
+                    .add(R.id.home_content).commit()
+            R.id.radio_knowledge -> toast("知识体系")
+            R.id.radio_navigation -> toast("导航")
+            R.id.radio_project -> toast("项目")
+
+
+        }
     }
 }
 
