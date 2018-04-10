@@ -1,9 +1,11 @@
 package com.txl.wanandroid.my_wanandroid.activity
 
-import android.widget.EditText
+import android.view.View
+import android.widget.*
 import com.txl.wanandroid.my_wanandroid.R
 import com.txl.wanandroid.my_wanandroid.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_login.*
+import java.util.ArrayList
 
 /**
  *
@@ -30,6 +32,13 @@ class LoginActivity : BaseActivity() {
         /**
          * kotlin的lab表达式
          */
+        var listview = ListView(this)
+
+        var message: TextView?
+        var name: View = View(this)
+
+
+        var list = ArrayList<String>()
 
 
     }

@@ -2,6 +2,8 @@ package com.txl.wanandroid.my_wanandroid.base
 
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
+import com.txl.wanandroid.my_wanandroid.fragment.HomeFragment
+import kotlin.reflect.KClass
 
 /**
  *
@@ -15,24 +17,27 @@ import android.support.v4.app.FragmentTransaction
  */
 
 
-class BaseFragmentBuilder {
+class BaseFragmentBuilder() {
     lateinit var transaction: FragmentTransaction
     lateinit var simpletName: String
     lateinit var fragment: BaseFragment
     val fragmentMap: HashMap<Int, BaseFragment> by lazy { HashMap<Int, BaseFragment>() }
+
 
     companion object {
         private val instance = BaseFragmentBuilder()
         private lateinit var manager: FragmentManager
         fun getInstance(baseActivity: BaseActivity? = null, baseFragment: BaseFragment? = null): BaseFragmentBuilder {
             manager = baseActivity?.supportFragmentManager ?: baseFragment!!.childFragmentManager
+
             return instance
         }
     }
 
-    fun start(clazz: Class<BaseFragment?>): BaseFragmentBuilder {
-        simpletName = clazz.simpleName
-        fragment = manager.findFragmentByTag(simpletName) as? BaseFragment ?: clazz.newInstance()!!
+    fun start(cla: Class<out BaseFragment>): BaseFragmentBuilder {
+        transaction = manager.beginTransaction()
+        simpletName = cla.simpleName!!
+        fragment = manager.findFragmentByTag(simpletName) as? BaseFragment ?: cla.newInstance()!!
         return this
     }
 
