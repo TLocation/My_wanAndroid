@@ -1,6 +1,7 @@
 package com.txl.wanandroid.my_wanandroid.fragment
 
 import android.support.v7.widget.LinearLayoutManager
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.AdapterView
 import com.txl.wanandroid.my_wanandroid.R
@@ -44,8 +45,12 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemClickListener {
         fragment_home_rll.layoutManager = manager
 
         listAdapter = HomeListAdapter(R.layout.home_list_item, homeList, this)
-
+//        var wrapper = RecyclerViewWrapper<HomeList.Data.Data>(listAdapter )
+        val view = LayoutInflater.from(activity).inflate(R.layout.haeder_text, null)
+        listAdapter.addHeaderView(view)
+        listAdapter.addFooterView(view)
         fragment_home_rll.adapter = listAdapter
+
 
     }
 
@@ -53,17 +58,17 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemClickListener {
 
         MyOkhttp.get()
                 .url(UrlUtils.GET_HOME_ARTICLE_LIST(PAGE)).enqueue(object : GsonResponse<HomeList>() {
-                    override fun onFeail(statCode: Int, errorMsg: String?) {
-                        toast(errorMsg!!)
-                    }
+            override fun onFeail(statCode: Int, errorMsg: String?) {
+                toast(errorMsg!!)
+            }
 
-                    override fun onSuccful(statCode: Int, response: HomeList) {
-                        homeList.addAll(response.data.datas)
+            override fun onSuccful(statCode: Int, response: HomeList) {
+                homeList.addAll(response.data.datas)
 
-                        listAdapter.refresh(homeList)
-                    }
+                listAdapter.refresh(homeList)
+            }
 
-                })
+        })
 
     }
 

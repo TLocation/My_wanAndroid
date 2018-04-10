@@ -7,4 +7,6 @@
 
     <color name="gray_home">#FFCBCBCB</color>
     <color name="black">#000000</color>
+    
+    <color name="yellow_home">#F39C12</color>
 </resources>

@@ -68,7 +68,7 @@
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="@string/home_bottom_home"
-                android:textColor="@color/gray_home" />
+                android:textColor="@color/select_homepage" />
 
             <RadioButton
                 android:id="@+id/radio_knowledge"
@@ -79,7 +79,7 @@
                 android:drawableTop="@drawable/home_bottom_knowledge"
                 android:gravity="center"
                 android:text="@string/home_bottom_knowledge"
-                android:textColor="@color/gray_home" />
+                android:textColor="@color/select_homepage" />
 
             <RadioButton
                 android:id="@+id/radio_navigation"
@@ -90,7 +90,7 @@
                 android:drawableTop="@drawable/home_bottom_navigation"
                 android:gravity="center"
                 android:text="@string/home_bottom_navigation"
-                android:textColor="@color/gray_home" />
+                android:textColor="@color/select_homepage" />
 
             <RadioButton
                 android:id="@+id/radio_project"
@@ -101,7 +101,7 @@
                 android:drawableTop="@drawable/home_bottom_project"
                 android:gravity="center"
                 android:text="@string/home_bottom_project"
-                android:textColor="@color/gray_home" />
+                android:textColor="@color/select_homepage" />
         </RadioGroup>
 
         <FrameLayout

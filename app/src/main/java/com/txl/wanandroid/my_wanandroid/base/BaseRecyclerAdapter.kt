@@ -1,9 +1,9 @@
 package com.txl.wanandroid.my_wanandroid.base
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.AdapterView
+import com.txl.wanandroid.my_wanandroid.utils.RecyclerViewWrapper
 
 /**
  *
@@ -17,7 +17,7 @@ import android.widget.AdapterView
  */
 
 
-abstract class BaseRecyclerAdapter<T>(layouts: IntArray, dataList: Collection<T>) : RecyclerView.Adapter<BaseViewHolder>() {
+abstract class BaseRecyclerAdapter<T>(layouts: IntArray, dataList: Collection<T>) : RecyclerViewWrapper() {
     protected val layouts: IntArray = layouts
     protected var dataList: ArrayList<T> = ArrayList<T>(dataList)
 
@@ -34,8 +34,6 @@ abstract class BaseRecyclerAdapter<T>(layouts: IntArray, dataList: Collection<T>
     }
 
 
-
-
     constructor(layout: Int, dataList: Collection<T>) : this(intArrayOf(layout), dataList)
 
 
@@ -48,21 +46,38 @@ abstract class BaseRecyclerAdapter<T>(layouts: IntArray, dataList: Collection<T>
     }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BaseViewHolder {
+//    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BaseViewHolder {
+//        var baseViewHolder: BaseViewHolder
+//        if (layouts.size === 0) {
+//            baseViewHolder = BaseViewHolder(LayoutInflater.from(parent!!.context).inflate(layouts[0], parent, false), onItemClickListener)
+//        } else {
+//            baseViewHolder = BaseViewHolder(LayoutInflater.from(parent!!.context).inflate(layouts[viewType], parent, false), onItemClickListener)
+//        }
+//        return baseViewHolder
+//    }
+
+    override fun onCreateGeneralViewHolder(parent: ViewGroup?, viewType: Int): BaseViewHolder {
         var baseViewHolder: BaseViewHolder
         if (layouts.size === 0) {
-            baseViewHolder = BaseViewHolder(LayoutInflater.from(parent!!.context).inflate(layouts[0], parent, false), onItemClickListener)
+            baseViewHolder = BaseViewHolder(LayoutInflater.from(parent!!.context).inflate(layouts[0], parent, false), onItemClickListener,getHeadersCount())
         } else {
-            baseViewHolder = BaseViewHolder(LayoutInflater.from(parent!!.context).inflate(layouts[viewType], parent, false), onItemClickListener)
+            baseViewHolder = BaseViewHolder(LayoutInflater.from(parent!!.context).inflate(layouts[viewType], parent, false), onItemClickListener,getHeadersCount())
         }
         return baseViewHolder
     }
 
-    override fun getItemCount(): Int {
+    override fun getGeneralCount(): Int {
         return dataList.size
     }
+//    override fun getItemCount(): Int {
+//        return dataList.size
+//    }
 
-    override fun onBindViewHolder(holder: BaseViewHolder?, position: Int) {
+//    override fun onBindViewHolder(holder: BaseViewHolder?, position: Int) {
+//        conver(holder!!, dataList.get(position), position, getItemViewType(position))
+//    }
+
+    override fun onBindGeneralViewHolder(holder: BaseViewHolder?, position: Int) {
         conver(holder!!, dataList.get(position), position, getItemViewType(position))
     }
 

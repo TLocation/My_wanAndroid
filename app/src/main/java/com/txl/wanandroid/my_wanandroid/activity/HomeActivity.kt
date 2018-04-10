@@ -24,6 +24,7 @@ class HomeActivity : BaseActivity(), RadioGroup.OnCheckedChangeListener {
                 .add(R.id.home_content).commit()
 
 
+
     }
 
     /**

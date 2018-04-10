@@ -21,10 +21,13 @@ import android.widget.TextView
  */
 
 
-class BaseViewHolder(itemView: View, onItemClickListener: AdapterView.OnItemClickListener?) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+class BaseViewHolder(itemView: View, onItemClickListener: AdapterView.OnItemClickListener?, val headerCount: Int) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
     override fun onClick(p0: View?) {
-        onItemClickListener!!.onItemClick(null, p0, adapterPosition, itemId)
+
+        onItemClickListener?.onItemClick(null, p0, adapterPosition - headerCount, itemId)
     }
+
+    constructor(itemView: View,headerCount: Int) : this(itemView, null,headerCount)
 
     val onItemClickListener = onItemClickListener
 
@@ -48,11 +51,11 @@ class BaseViewHolder(itemView: View, onItemClickListener: AdapterView.OnItemClic
             if (text == null) view.setText(stringres) else view.text = text
         }
     }
-   fun setImgResouse(id:Int,resid:Int){
-       var view = getView(id)
-       if(view is ImageView) view.setImageResource(resid)
-   }
 
+    fun setImgResouse(id: Int, resid: Int) {
+        var view = getView(id)
+        if (view is ImageView) view.setImageResource(resid)
+    }
 
 
     fun getView(@IdRes id: Int) = itemView.findViewById<View>(id)
