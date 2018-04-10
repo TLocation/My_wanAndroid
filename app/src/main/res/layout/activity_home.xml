@@ -37,12 +37,13 @@
                     android:layout_alignParentRight="true"></android.support.v7.widget.SearchView>
 
                 <TextView
+                    android:id="@+id/homeTitle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerInParent="true"
                     android:layout_toLeftOf="@id/homeSeachView"
                     android:gravity="center"
-                    android:text="标题"
+                    android:text="@string/home_bottom_home"
                     android:textColor="@color/white" />
             </RelativeLayout>
         </android.support.v7.widget.Toolbar>

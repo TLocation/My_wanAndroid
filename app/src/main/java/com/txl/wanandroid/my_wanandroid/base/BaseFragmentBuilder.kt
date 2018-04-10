@@ -27,7 +27,6 @@ class BaseFragmentBuilder() {
         private lateinit var manager: FragmentManager
         fun getInstance(baseActivity: BaseActivity? = null, baseFragment: BaseFragment? = null): BaseFragmentBuilder {
             manager = baseActivity?.supportFragmentManager ?: baseFragment!!.childFragmentManager
-
             return instance
         }
     }

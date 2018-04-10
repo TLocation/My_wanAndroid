@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.widget.Toast
 import com.gyf.barlibrary.ImmersionBar
 
@@ -63,6 +64,10 @@ abstract class BaseActivity : AppCompatActivity() {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
 
+    }
+
+    fun  Context.log(message: String){
+        Log.e(TAG, message)
     }
 
 

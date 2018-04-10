@@ -23,6 +23,7 @@ class HomeActivity : BaseActivity(), RadioGroup.OnCheckedChangeListener {
                 .start(HomeFragment::class.java)
                 .add(R.id.home_content).commit()
 
+
     }
 
     /**
@@ -30,14 +31,23 @@ class HomeActivity : BaseActivity(), RadioGroup.OnCheckedChangeListener {
      */
     override fun onCheckedChanged(radioGroup: RadioGroup?, checkId: Int) {
         when (checkId) {
-            R.id.radio_homePage -> BaseFragmentBuilder.getInstance(this)
-                    .start(HomeFragment::class.java)
-                    .add(R.id.home_content).commit()
-            R.id.radio_knowledge -> toast("知识体系")
-            R.id.radio_navigation -> toast("导航")
-            R.id.radio_project -> toast("项目")
 
+            R.id.radio_homePage -> {
+                BaseFragmentBuilder.getInstance(this)
+                        .start(HomeFragment::class.java)
+                        .add(R.id.home_content).commit()
+                homeTitle.text = getString(R.string.home_bottom_home)
+            }
 
+            R.id.radio_knowledge -> {
+                homeTitle.text = getString(R.string.home_bottom_knowledge)
+            }
+            R.id.radio_navigation -> {
+                homeTitle.text = getString(R.string.home_bottom_navigation)
+            }
+            R.id.radio_project -> {
+                homeTitle.text = getString(R.string.home_bottom_project)
+            }
         }
     }
 }

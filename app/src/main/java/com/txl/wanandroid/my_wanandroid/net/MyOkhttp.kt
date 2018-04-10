@@ -3,6 +3,7 @@ package com.txl.wanandroid.my_wanandroid.net
 import android.os.Looper
 import com.txl.wanandroid.my_wanandroid.net.cookie.CookieManager
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 
 /**
  *
@@ -19,12 +20,15 @@ import okhttp3.OkHttpClient
  * 单例的声明方式
  */
 object MyOkhttp {
-     var okHttpClient: OkHttpClient;
+    var okHttpClient: OkHttpClient;
     val hanlder: android.os.Handler = android.os.Handler(Looper.getMainLooper())
 
     init {
+        val log = HttpLoggingInterceptor()
+        log.level = HttpLoggingInterceptor.Level.BODY
         okHttpClient = OkHttpClient.Builder()
                 .cookieJar(CookieManager())
+                .addInterceptor(log)
                 .build()
     }
 
