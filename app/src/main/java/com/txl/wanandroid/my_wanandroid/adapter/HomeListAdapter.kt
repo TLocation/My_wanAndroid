@@ -17,7 +17,8 @@ import com.txl.wanandroid.my_wanandroid.bean.home.HomeList
  */
 class HomeListAdapter(layouts: Int,
                       dataList: Collection<HomeList.Data.Data>,
-                      onItemClickListener: AdapterView.OnItemClickListener) : BaseRecyclerAdapter<HomeList.Data.Data>(layouts, dataList, onItemClickListener) {
+                      onItemClickListener: AdapterView.OnItemClickListener) :
+        BaseRecyclerAdapter<HomeList.Data.Data>(layouts, dataList, onItemClickListener) {
 
     override fun conver(baseViewHolder: BaseViewHolder, data: HomeList.Data.Data,
                         position: Int, type: Int) {

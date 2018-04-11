@@ -37,5 +37,7 @@ object UrlUtils {
      */
     const val HOME_BANNER = "${BASE_URL}banner/json"
 
+    val GET_KNOWLEDGE_LIST = "${BASE_URL}tree/json"
+
 
 }
