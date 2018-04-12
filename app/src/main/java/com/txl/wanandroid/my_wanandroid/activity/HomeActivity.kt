@@ -6,6 +6,7 @@ import com.txl.wanandroid.my_wanandroid.base.BaseActivity
 import com.txl.wanandroid.my_wanandroid.base.BaseFragmentBuilder
 import com.txl.wanandroid.my_wanandroid.fragment.HomeFragment
 import com.txl.wanandroid.my_wanandroid.fragment.KnowledgeFragment
+import com.txl.wanandroid.my_wanandroid.fragment.NavFragment
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : BaseActivity(), RadioGroup.OnCheckedChangeListener {
@@ -45,6 +46,9 @@ class HomeActivity : BaseActivity(), RadioGroup.OnCheckedChangeListener {
                 homeTitle.text = getString(R.string.home_bottom_knowledge)
             }
             R.id.radio_navigation -> {
+                BaseFragmentBuilder.getInstance(this)
+                        .start(NavFragment::class.java)
+                        .add(R.id.home_content).commit()
                 homeTitle.text = getString(R.string.home_bottom_navigation)
             }
             R.id.radio_project -> {

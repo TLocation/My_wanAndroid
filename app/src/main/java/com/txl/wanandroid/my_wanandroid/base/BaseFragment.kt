@@ -22,6 +22,7 @@ import android.widget.Toast
 
 
 abstract class BaseFragment : Fragment() {
+    protected val TAG = javaClass.simpleName
     protected lateinit var activity: BaseActivity
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater!!.inflate(getLayoutId(), container, false)

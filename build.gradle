@@ -2,6 +2,7 @@
 ext.barlibrary = "2.3.0"
 ext.support_v7 = "26.1.0"
 ext.okhttp = "3.10.0"
+ext.okhttplog ="3.4.1"
 ext.gson = "2.8.2"
 ext.rxjava = "2.0.0"
 ext.rxAndroid = "2.0.2"

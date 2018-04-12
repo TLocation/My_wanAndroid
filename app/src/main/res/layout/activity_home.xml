@@ -21,6 +21,7 @@
         android:background="@color/white">
 
         <android.support.v7.widget.Toolbar
+            android:id="@+id/homeToobar"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/colorPrimary"
@@ -105,6 +106,7 @@
         </RadioGroup>
 
         <FrameLayout
+            android:layout_below="@id/homeToobar"
             android:id="@+id/home_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

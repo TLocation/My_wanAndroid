@@ -9,4 +9,6 @@
     <color name="black">#000000</color>
     
     <color name="yellow_home">#F39C12</color>
+    <color name="nav_slect">#115E56</color>
+    <color name="nav_no">#049486</color>
 </resources>

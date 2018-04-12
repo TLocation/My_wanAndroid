@@ -22,12 +22,13 @@ import android.widget.TextView
 
 
 class BaseViewHolder(itemView: View, onItemClickListener: AdapterView.OnItemClickListener?, val headerCount: Int) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    lateinit var holderClcik: onHolderClcik
     override fun onClick(p0: View?) {
-
         onItemClickListener?.onItemClick(null, p0, adapterPosition - headerCount, itemId)
+        holderClcik?.onViewClick(p0!!)
     }
 
-    constructor(itemView: View,headerCount: Int) : this(itemView, null,headerCount)
+    constructor(itemView: View, headerCount: Int) : this(itemView, null, headerCount)
 
     val onItemClickListener = onItemClickListener
 
@@ -59,5 +60,8 @@ class BaseViewHolder(itemView: View, onItemClickListener: AdapterView.OnItemClic
 
 
     fun getView(@IdRes id: Int) = itemView.findViewById<View>(id)
+    interface onHolderClcik {
+        fun onViewClick(view:View)
+    }
 }
 
