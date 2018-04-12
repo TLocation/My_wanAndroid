@@ -33,7 +33,10 @@ class NavFragment : BaseFragment(), AdapterView.OnItemClickListener {
         return R.layout.fragment_nav
     }
 
-    val adapter: NavAdapter by lazy { NavAdapter(R.layout.item_nav, listData, this) }
+    val adapter: NavAdapter by lazy {
+        NavAdapter(R.layout.item_nav, listData, this)
+    }
+
     override fun init() {
         navRecyclerView.layoutManager = LinearLayoutManager(activity)
         navRecyclerView.adapter = adapter
@@ -49,13 +52,18 @@ class NavFragment : BaseFragment(), AdapterView.OnItemClickListener {
 
                     override fun onSuccful(statCode: Int, response: NavDataBean) {
                         adapter.refresh(response.data)
-                        listData.clear()
-                        listData.addAll(response.data)
+                        listData.apply {
+                            clear()
+                            addAll(response.data)
+                        }
                         Observable.fromIterable(response.data[0].articles)
                                 .subscribe {
-                                    val textview = TextView(activity)
-                                    textview.text = it.title
-                                    navFlowLayout.addView(textview)
+                                    navFlowLayout.addView(it.let {
+                                        val textview = TextView(activity)
+                                        textview.text = it.title
+                                        textview
+                                    })
+
                                 }
                     }
                 })
