@@ -45,7 +45,7 @@ class KnowledgeFragment : BaseFragment(), AdapterView.OnItemClickListener {
 
         knowledge_rv.layoutManager = manager
 
-        adapter = KnowledgeListAdapter(21, knowledgeList, this)
+        adapter = KnowledgeListAdapter(R.layout.knowledge_list_item, knowledgeList, this)
 
         knowledge_rv.adapter = adapter
     }
