@@ -1,6 +1,7 @@
 package com.txl.wanandroid.my_wanandroid.base
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.support.v7.app.AppCompatActivity
@@ -68,6 +69,9 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun  Context.log(message: String){
         Log.e(TAG, message)
+    }
+    fun startActivity(cla:Class<out BaseActivity>){
+        startActivity(Intent(this,cla))
     }
 
 

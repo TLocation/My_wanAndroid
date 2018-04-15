@@ -1,11 +1,19 @@
 package com.txl.wanandroid.my_wanandroid.activity
 
-import android.view.View
-import android.widget.*
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+import android.view.WindowManager
+import android.widget.EditText
 import com.txl.wanandroid.my_wanandroid.R
 import com.txl.wanandroid.my_wanandroid.base.BaseActivity
+import com.txl.wanandroid.my_wanandroid.bean.LoginBean
+import com.txl.wanandroid.my_wanandroid.net.MyOkhttp
+import com.txl.wanandroid.my_wanandroid.net.response.GsonResponse
+import com.txl.wanandroid.my_wanandroid.utils.KeyUtils
+import com.txl.wanandroid.my_wanandroid.utils.PreferenceUtils
+import com.txl.wanandroid.my_wanandroid.utils.UrlUtils
 import kotlinx.android.synthetic.main.activity_login.*
-import java.util.ArrayList
 
 /**
  *
@@ -26,21 +34,84 @@ class LoginActivity : BaseActivity() {
      */
     val username: EditText by lazy { login_username.editText!! }
     val pwd: EditText by lazy { login_pwd.editText!! }
+
     override fun initView() {
-
-        var editText = login_username.editText
+//        AndroidBug5497Workaround.assistActivity(this)
         /**
-         * kotlin的lab表达式
+         * 解决状态栏与edittext冲突问题
          */
-        var listview = ListView(this)
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+        listener()
+        login()
+    }
 
-        var message: TextView?
-        var name: View = View(this)
+    fun listener() {
+        username.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+            }
 
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
 
-        var list = ArrayList<String>()
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (p0.isNullOrEmpty()) {
+                    login_username.error = getString(R.string.login_username_empty)
+                    login_username.isErrorEnabled = true
+                } else {
+                    login_username.isErrorEnabled = false
+                }
+            }
+        })
+        pwd.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+            }
 
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
 
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (p0.isNullOrEmpty()) {
+                    login_pwd.error = getString(R.string.login_pwd_empty)
+                    login_pwd.isErrorEnabled = true
+                } else {
+                    login_pwd.isErrorEnabled = false
+                }
+            }
+        })
+    }
+
+    fun error(message: String) {
+        login_pwd.error = message
+        login_pwd.isErrorEnabled = true
+        login_username.error = message
+        login_username.isErrorEnabled = true
+    }
+
+    fun login() {
+        login.setOnClickListener {
+            MyOkhttp.post()
+                    .url(UrlUtils.LOGIN_URL)
+                    .addParams(KeyUtils.KEY_USERNAME, username.text.toString())
+                    .addParams(KeyUtils.KEY_PASSWORD, pwd.text.toString())
+                    .enqueue(object : GsonResponse<LoginBean>() {
+                        override fun onFeail(statCode: Int, errorMsg: String?) {
+                            Log.e(TAG, "error===>$errorMsg")
+                        }
+
+                        override fun onSuccful(statCode: Int, response: LoginBean) {
+
+                            if (response.errorCode == -1) {
+                                //账号密码不匹配
+                                error(response.errorMsg)
+                            } else {
+                                var islogin by PreferenceUtils<Boolean>(KeyUtils.IS_LOGIN, false)
+                                islogin = true
+                                setResult(HomeActivity.LOGIN_RESULT_CODE)
+                                finish()
+                            }
+                        }
+                    })
+        }
     }
 
 
@@ -49,7 +120,6 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun loadData() {
-        val context = baseContext
 
     }
 

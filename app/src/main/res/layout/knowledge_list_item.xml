@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:background="@drawable/shape_know_item"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <TextView
+        android:textColor="@color/colorAccent"
         android:id="@+id/knowledge_item_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="@string/app_name"
         android:textSize="@dimen/fab_margin" />
+<com.txl.wanandroid.my_wanandroid.view.FlowLayout
+    android:id="@+id/knowledge_item_flow"
+    android:layout_width="match_parent"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    app:childSpacing="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_height="wrap_content">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/knowledge_item_rv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:layout_marginBottom="8dp" />
+
+</com.txl.wanandroid.my_wanandroid.view.FlowLayout>
+
 </LinearLayout>

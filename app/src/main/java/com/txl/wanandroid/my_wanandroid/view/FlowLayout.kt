@@ -101,10 +101,16 @@ class FlowLayout(context: Context?, attrs: AttributeSet?) : ViewGroup(context, a
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+
         var widthSize = MeasureSpec.getSize(widthMeasureSpec)
         var widthModle = MeasureSpec.getMode(widthMeasureSpec)
         var heightSize = MeasureSpec.getSize(heightMeasureSpec)
         var heightModle = MeasureSpec.getMode(heightMeasureSpec)
+        when(heightModle){
+            MeasureSpec.EXACTLY -> Log.e("test","exactly")
+            MeasureSpec.AT_MOST -> Log.e("test","atmost    $heightSize")
+            MeasureSpec.UNSPECIFIED -> Log.e("test","UNSPECIFIED")
+        }
         Log.e(TAG, "clear")
         mHorizontalSpacingForRow.clear()
         mChildNumForRow.clear()
@@ -185,7 +191,7 @@ class FlowLayout(context: Context?, attrs: AttributeSet?) : ViewGroup(context, a
         } else {
             measuredWidth = Math.min(measuredWidth + paddingLeft + paddingRight, widthSize)
         }
-        measuredHeight = paddingTop + paddingBottom
+        measuredHeight += paddingTop + paddingBottom
         var rowNum = Math.min(mHorizontalSpacingForRow.size, mMaxRows)
         var rowSpacing: Float = if (mRowSpacing == SPACING_AUTO.toFloat() && heightModle == MeasureSpec.UNSPECIFIED) 0f else mRowSpacing
         if (rowSpacing == SPACING_AUTO.toFloat()) {
@@ -199,12 +205,17 @@ class FlowLayout(context: Context?, attrs: AttributeSet?) : ViewGroup(context, a
         } else {
             mAdjustedRowSpacing = rowSpacing
             if (rowNum > 1) {
-                measuredHeight = if (heightModle == MeasureSpec.UNSPECIFIED) (measuredHeight + (mAdjustedRowSpacing * (rowNum - 1)).toInt()) else (Math.min((measuredHeight + mAdjustedRowSpacing * (rowNum - 1)).toInt(), heightSize))
+                measuredHeight = if (heightModle == MeasureSpec.UNSPECIFIED)
+                    (measuredHeight + (mAdjustedRowSpacing * (rowNum - 1)).toInt())
+                else
+                    (Math.min((measuredHeight + mAdjustedRowSpacing * (rowNum - 1)).toInt(), heightSize))
             }
         }
         Log.e("lkj", "mHorizontalSpacingForRow===>${mHorizontalSpacingForRow.size}mChildNumForRow===>${mChildNumForRow.size}")
+
         measuredWidth = if (widthModle == MeasureSpec.EXACTLY) widthSize else measuredWidth
         measuredHeight = if (heightModle == MeasureSpec.EXACTLY) heightSize else measuredHeight
+        Log.e("test","height===》$measuredHeight  width===>$measuredWidth")
         setMeasuredDimension(measuredWidth, measuredHeight)
 
 

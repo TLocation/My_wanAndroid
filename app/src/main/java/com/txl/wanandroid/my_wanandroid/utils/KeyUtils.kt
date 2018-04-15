@@ -13,7 +13,14 @@ package com.txl.wanandroid.my_wanandroid.utils
 
 
 object KeyUtils {
+//------------------------------------login--------------------------------------
+
+    //登录用户名
+    const val KEY_USERNAME = "username"
+    //登录密码
+    const val KEY_PASSWORD = "password"
 
 
-
+    //--------------------------------sp-----------------------------------------
+    const val IS_LOGIN = "isLogin"
 }

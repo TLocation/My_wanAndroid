@@ -3,14 +3,5 @@
         <item
             android:icon="@mipmap/ic_launcher"
             android:id="@+id/side_login"
-            android:title="home" />
-        <item
-            android:icon="@mipmap/ic_launcher"
-            android:id="@+id/side_1"
-            android:title="home" />
-        <item
-            android:icon="@mipmap/ic_launcher"
-            android:id="@+id/side_2"
-            android:title="home" />
-
+            android:title="我的收藏" />
 </menu>
