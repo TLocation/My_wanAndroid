@@ -75,6 +75,8 @@ class NavFragment : BaseFragment(), AdapterView.OnItemClickListener {
                 .subscribe {
                     val textview = TextView(activity)
                     textview.text = it.title
+                    textview.setPadding(10,10,10,10)
+                    textview.setBackgroundResource(R.drawable.select_nav_flow_item)
                     navFlowLayout.addView(textview)
                 }
     }

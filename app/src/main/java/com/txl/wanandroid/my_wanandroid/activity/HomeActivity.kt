@@ -7,6 +7,7 @@ import com.txl.wanandroid.my_wanandroid.base.BaseFragmentBuilder
 import com.txl.wanandroid.my_wanandroid.fragment.HomeFragment
 import com.txl.wanandroid.my_wanandroid.fragment.KnowledgeFragment
 import com.txl.wanandroid.my_wanandroid.fragment.NavFragment
+import com.txl.wanandroid.my_wanandroid.fragment.ProjectFragment
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : BaseActivity(), RadioGroup.OnCheckedChangeListener {
@@ -18,9 +19,16 @@ class HomeActivity : BaseActivity(), RadioGroup.OnCheckedChangeListener {
 
     override fun initView() {
         home_group.setOnCheckedChangeListener(this)
+//        setSupportActionBar(homeToobar)
     }
 
+
     override fun loadData() {
+        homeSide.setNavigationItemSelectedListener { item ->
+            log("onNavigationItemSelected")
+            true
+        }
+        homeSide.getHeaderView(0).setOnClickListener { toast("dsadsadsa") }
         BaseFragmentBuilder.getInstance(this)
                 .start(HomeFragment::class.java)
                 .add(R.id.home_content).commit()
@@ -53,6 +61,9 @@ class HomeActivity : BaseActivity(), RadioGroup.OnCheckedChangeListener {
             }
             R.id.radio_project -> {
                 homeTitle.text = getString(R.string.home_bottom_project)
+                BaseFragmentBuilder.getInstance(this)
+                        .start(ProjectFragment::class.java)
+                        .add(R.id.home_content).commit()
             }
         }
     }

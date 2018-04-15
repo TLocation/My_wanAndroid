@@ -9,6 +9,7 @@
     android:layout_width="100dp"
     android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
     <com.txl.wanandroid.my_wanandroid.view.FlowLayout
+        android:padding="10dp"
         android:layout_width="match_parent"
         android:id="@+id/navFlowLayout"
         app:childSpacing="20dp"

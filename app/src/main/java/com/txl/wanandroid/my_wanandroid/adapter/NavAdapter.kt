@@ -19,10 +19,12 @@ import com.txl.wanandroid.my_wanandroid.bean.nav.NavDataBean
  */
 
 
-class NavAdapter(layouts: Int, dataList: Collection<NavDataBean.Data>, onItemClickListener: AdapterView.OnItemClickListener) : BaseRecyclerAdapter<NavDataBean.Data>(layouts, dataList, onItemClickListener) {
+class NavAdapter(layouts: Int, dataList: Collection<NavDataBean.Data>,
+                 onItemClickListener: AdapterView.OnItemClickListener)
+    : BaseRecyclerAdapter<NavDataBean.Data>(layouts, dataList, onItemClickListener) {
     val TAG = javaClass.simpleName
     var lView: View? = null
-    var lPosition = -1
+    var lPosition = 0
     override fun conver(baseViewHolder: BaseViewHolder, data: NavDataBean.Data, position: Int, type: Int) {
         if (baseViewHolder.adapterPosition == lPosition) {
             baseViewHolder.getView(R.id.item_text).setBackgroundResource(R.drawable.select_nav_item)

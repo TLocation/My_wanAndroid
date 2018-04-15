@@ -22,7 +22,7 @@ import android.widget.TextView
 
 
 class BaseViewHolder(itemView: View, onItemClickListener: AdapterView.OnItemClickListener?, val headerCount: Int) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-    lateinit var holderClcik: onHolderClcik
+     var holderClcik: onHolderClcik?=null
     override fun onClick(p0: View?) {
         onItemClickListener?.onItemClick(null, p0, adapterPosition - headerCount, itemId)
         holderClcik?.onViewClick(p0!!)

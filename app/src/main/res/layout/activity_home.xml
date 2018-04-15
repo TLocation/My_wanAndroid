@@ -8,11 +8,7 @@
     android:paddingTop="@dimen/layout_paddingTop"
     tools:context="com.txl.wanandroid.my_wanandroid.activity.HomeActivity">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="left"
-        android:background="@color/black"/>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -35,7 +31,7 @@
                     android:id="@+id/homeSeachView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"/>
+                    android:layout_alignParentRight="true" />
 
                 <TextView
                     android:id="@+id/homeTitle"
@@ -44,9 +40,9 @@
                     android:layout_centerInParent="true"
                     android:layout_toLeftOf="@id/homeSeachView"
                     android:gravity="center"
-                    android:textSize="16dp"
                     android:text="@string/home_bottom_home"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
             </RelativeLayout>
         </android.support.v7.widget.Toolbar>
 
@@ -106,11 +102,11 @@
         </RadioGroup>
 
         <FrameLayout
-            android:layout_below="@id/homeToobar"
             android:id="@+id/home_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/home_group" />
+            android:layout_above="@id/home_group"
+            android:layout_below="@id/homeToobar" />
 
         <View
             android:layout_width="match_parent"
@@ -118,4 +114,15 @@
             android:layout_alignTop="@id/home_group"
             android:background="@color/black" />
     </RelativeLayout>
+
+    <android.support.design.widget.NavigationView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:background="@color/white"
+        app:headerLayout="@layout/side_header_view"
+        app:menu="@menu/side_menu"
+        android:padding="@dimen/layout_paddingTop"
+        android:id="@+id/homeSide"
+        />
 </android.support.v4.widget.DrawerLayout>
