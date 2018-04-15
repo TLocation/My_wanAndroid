@@ -46,7 +46,8 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemClickListener {
 
         listAdapter = HomeListAdapter(R.layout.home_list_item, homeList, this)
 //        var wrapper = RecyclerViewWrapper<HomeList.Data.Data>(listAdapter )
-        val view = LayoutInflater.from(activity).inflate(R.layout.haeder_text, null)
+        val view = LayoutInflater.from(activity).inflate(R.layout.home_header_vp, null)
+        listAdapter.addHeaderView(view)
         fragment_home_rll.adapter = listAdapter
 
 
