@@ -1,6 +1,7 @@
 package com.txl.wanandroid.my_wanandroid
 
 import android.app.Application
+import android.support.multidex.MultiDexApplication
 import com.txl.wanandroid.my_wanandroid.utils.PreferenceUtils
 
 /**
@@ -15,7 +16,7 @@ import com.txl.wanandroid.my_wanandroid.utils.PreferenceUtils
  */
 
 
-class App : Application() {
+class App : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
         app = this

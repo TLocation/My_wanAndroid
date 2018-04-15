@@ -19,7 +19,7 @@ import com.txl.wanandroid.my_wanandroid.base.BaseViewHolder
  */
 
 
-abstract open class RecyclerViewWrapper : RecyclerView.Adapter<BaseViewHolder>() {
+abstract class RecyclerViewWrapper : RecyclerView.Adapter<BaseViewHolder>() {
     val BASE_ITEM_TYPE_HEADER = 100000
     val BASE_ITEM_TYPE_FOOTER = 200000
     //存储头布局
