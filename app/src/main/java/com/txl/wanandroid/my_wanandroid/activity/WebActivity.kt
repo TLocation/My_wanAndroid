@@ -1,7 +1,11 @@
 package com.txl.wanandroid.my_wanandroid.activity
 
+import android.widget.LinearLayout
+import com.just.agentweb.AgentWeb
 import com.txl.wanandroid.my_wanandroid.R
 import com.txl.wanandroid.my_wanandroid.base.BaseActivity
+import com.txl.wanandroid.my_wanandroid.utils.KeyUtils
+import kotlinx.android.synthetic.main.activity_web.*
 
 /**
  *
@@ -21,6 +25,13 @@ class WebActivity:BaseActivity() {
     }
 
     override fun initView() {
+        AgentWeb.with(this)
+                .setAgentWebParent(webContent, LinearLayout.LayoutParams(-1, -1))
+                .useDefaultIndicator()
+                .setSecurityType(AgentWeb.SecurityType.STRICT_CHECK)
+                .createAgentWeb()
+                .ready()
+                .go(intent.getStringExtra(KeyUtils.WEB_URL))
     }
 
     override fun loadData() {

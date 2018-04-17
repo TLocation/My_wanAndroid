@@ -20,7 +20,8 @@ object KeyUtils {
     //登录密码
     const val KEY_PASSWORD = "password"
 
-
+//--------------------------------------web-----------------------------
+    const val WEB_URL = "weburl"
     //--------------------------------sp-----------------------------------------
     const val IS_LOGIN = "isLogin"
 }

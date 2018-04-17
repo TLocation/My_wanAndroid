@@ -1,6 +1,7 @@
 package com.txl.wanandroid.my_wanandroid.activity
 
 import android.content.Intent
+import android.view.Gravity
 import android.widget.RadioGroup
 import com.txl.wanandroid.my_wanandroid.R
 import com.txl.wanandroid.my_wanandroid.base.BaseActivity
@@ -28,6 +29,7 @@ class HomeActivity : BaseActivity(), RadioGroup.OnCheckedChangeListener {
         home_group.setOnCheckedChangeListener(this)
         var item = homeSide.menu.getItem(0)
         if (islogin) item.title = "我的收藏" else item.title = "立即登录"
+        homeToobar.setNavigationOnClickListener { home_drawer.openDrawer(Gravity.LEFT) }
     }
 
 

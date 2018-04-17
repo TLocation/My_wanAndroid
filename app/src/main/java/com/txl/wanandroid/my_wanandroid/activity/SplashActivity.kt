@@ -17,7 +17,11 @@ class SplashActivity : BaseActivity() {
     override fun initView() {
         Observable.timer(1, TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { startActivity(Intent(SplashActivity@ this, HomeActivity::class.java)) }
+                .subscribe {
+                    startActivity(Intent(SplashActivity@ this, HomeActivity::class.java))
+                    finish()
+                }
+
     }
 
     override fun loadData() {

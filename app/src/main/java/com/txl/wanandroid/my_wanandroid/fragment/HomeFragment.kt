@@ -1,5 +1,7 @@
 package com.txl.wanandroid.my_wanandroid.fragment
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,6 +9,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.LinearLayout
 import com.txl.wanandroid.my_wanandroid.R
+import com.txl.wanandroid.my_wanandroid.activity.WebActivity
 import com.txl.wanandroid.my_wanandroid.adapter.HomeListAdapter
 import com.txl.wanandroid.my_wanandroid.adapter.HomeVpAdapter
 import com.txl.wanandroid.my_wanandroid.base.BaseFragment
@@ -14,12 +17,12 @@ import com.txl.wanandroid.my_wanandroid.bean.home.HomeBanner
 import com.txl.wanandroid.my_wanandroid.bean.home.HomeList
 import com.txl.wanandroid.my_wanandroid.net.MyOkhttp
 import com.txl.wanandroid.my_wanandroid.net.response.GsonResponse
+import com.txl.wanandroid.my_wanandroid.utils.KeyUtils
 import com.txl.wanandroid.my_wanandroid.utils.UrlUtils
 import com.txl.wanandroid.my_wanandroid.view.DividerUtils
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.home_header_vp.*
 import java.util.*
-import kotlin.concurrent.timerTask
 
 /**
  * 项目名称：玩Android
@@ -48,6 +51,7 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemClickListener {
         return R.layout.fragment_home
     }
 
+    @SuppressLint("NewApi")
     override fun init() {
 
         homeList = ArrayList()
@@ -154,6 +158,9 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemClickListener {
     override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
 
         toast("跳转...$p2")
+        var intent  = Intent(activity,WebActivity::class.java)
+        intent.putExtra(KeyUtils.WEB_URL,homeList[p2].link)
+        startActivity(intent)
 
     }
 
