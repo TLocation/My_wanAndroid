@@ -1,5 +1,8 @@
 package com.txl.wanandroid.my_wanandroid.bean.knowledge
 
+import android.os.Parcel
+import android.os.Parcelable
+
 /**
  *
  * 项目名称: WanAndroid
@@ -28,6 +31,7 @@ data class KnowledgeBean(
 			val visible: Int = 0 //1
 	) {
 		data class Children(
+
 				val children: List<Any> = listOf(),
 				val courseId: Int = 0, //13
 				val id: Int = 0, //60
@@ -35,6 +39,36 @@ data class KnowledgeBean(
 				val order: Int = 0, //1000
 				val parentChapterId: Int = 0, //150
 				val visible: Int = 0 //1
-		)
+		) : Parcelable {
+			constructor(source: Parcel) : this(
+					ArrayList<Any>().apply { source.readList(this, Any::class.java.classLoader) },
+					source.readInt(),
+					source.readInt(),
+					source.readString(),
+					source.readInt(),
+					source.readInt(),
+					source.readInt()
+			)
+
+			override fun describeContents() = 0
+
+			override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
+				writeList(children)
+				writeInt(courseId)
+				writeInt(id)
+				writeString(name)
+				writeInt(order)
+				writeInt(parentChapterId)
+				writeInt(visible)
+			}
+
+			companion object {
+				@JvmField
+				val CREATOR: Parcelable.Creator<Children> = object : Parcelable.Creator<Children> {
+					override fun createFromParcel(source: Parcel): Children = Children(source)
+					override fun newArray(size: Int): Array<Children?> = arrayOfNulls(size)
+				}
+			}
+		}
 	}
 }

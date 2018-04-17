@@ -30,10 +30,17 @@ abstract class BaseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (arguments != null) {
+            getBundle(arguments)
+        }
         init()
         loadData()
     }
 
+    /**
+     * 页面传值
+     */
+    fun getBundle(bundle: Bundle) {}
     /**
      * 高阶函数 为fragment 增加toast方法
      */

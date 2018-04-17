@@ -20,8 +20,14 @@ object KeyUtils {
     //登录密码
     const val KEY_PASSWORD = "password"
 
-//--------------------------------------web-----------------------------
+    //--------------------------------------web-----------------------------
     const val WEB_URL = "weburl"
+//--------------------------------------KnowkedgeTabActivity------------------------
+
+    //跳转到知识体系二级页面的title
+    const val KNOW_KEY_TITLE = "know_title"
+    //知识体系二级页面 cid集合 包含名字  cid
+    const val KNOW_KEY_CID = "know_cid"
     //--------------------------------sp-----------------------------------------
     const val IS_LOGIN = "isLogin"
 }
