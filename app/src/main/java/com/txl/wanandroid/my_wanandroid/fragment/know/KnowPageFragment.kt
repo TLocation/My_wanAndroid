@@ -1,12 +1,14 @@
 package com.txl.wanandroid.my_wanandroid.fragment.know
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.AdapterView
 import android.widget.LinearLayout
 import com.txl.wanandroid.my_wanandroid.R
+import com.txl.wanandroid.my_wanandroid.activity.WebActivity
 import com.txl.wanandroid.my_wanandroid.adapter.KnowPageContentAdapter
 import com.txl.wanandroid.my_wanandroid.base.BaseFragment
 import com.txl.wanandroid.my_wanandroid.bean.knowledge.KnowPageBean
@@ -71,6 +73,8 @@ class KnowPageFragment : BaseFragment(), AdapterView.OnItemClickListener {
     }
 
     override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        startActivity(Intent(activity, WebActivity::class.java).putExtra(KeyUtils.WEB_URL,
+                mList[p2].link))
     }
 
 }

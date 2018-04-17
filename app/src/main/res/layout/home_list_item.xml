@@ -45,12 +45,16 @@
             android:paddingRight="5dp">
 
             <TextView
+                android:maxLength="6"
+                android:singleLine="true"
                 android:id="@+id/home_item_author"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/app_name" />
 
             <TextView
+                android:maxLength="8"
+                android:singleLine="true"
                 android:id="@+id/home_item_chapter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

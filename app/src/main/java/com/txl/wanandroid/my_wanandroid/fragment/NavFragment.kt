@@ -1,15 +1,18 @@
 package com.txl.wanandroid.my_wanandroid.fragment
 
+import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.AdapterView
 import android.widget.TextView
 import com.txl.wanandroid.my_wanandroid.R
+import com.txl.wanandroid.my_wanandroid.activity.WebActivity
 import com.txl.wanandroid.my_wanandroid.adapter.NavAdapter
 import com.txl.wanandroid.my_wanandroid.base.BaseFragment
 import com.txl.wanandroid.my_wanandroid.bean.nav.NavDataBean
 import com.txl.wanandroid.my_wanandroid.net.MyOkhttp
 import com.txl.wanandroid.my_wanandroid.net.response.GsonResponse
+import com.txl.wanandroid.my_wanandroid.utils.KeyUtils
 import com.txl.wanandroid.my_wanandroid.utils.UrlUtils
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.fragment_nav.*
@@ -58,11 +61,7 @@ class NavFragment : BaseFragment(), AdapterView.OnItemClickListener {
                         }
                         Observable.fromIterable(response.data[0].articles)
                                 .subscribe {
-                                    navFlowLayout.addView(it.let {
-                                        val textview = TextView(activity)
-                                        textview.text = it.title
-                                        textview
-                                    })
+                                    addview(it)
 
                                 }
                     }
@@ -73,12 +72,20 @@ class NavFragment : BaseFragment(), AdapterView.OnItemClickListener {
         navFlowLayout.removeAllViews()
         Observable.fromIterable(listData[position].articles)
                 .subscribe {
-                    val textview = TextView(activity)
-                    textview.text = it.title
-                    textview.setPadding(10,10,10,10)
-                    textview.setBackgroundResource(R.drawable.select_nav_flow_item)
-                    navFlowLayout.addView(textview)
+                    addview(it)
                 }
+    }
+
+    private fun addview(it: NavDataBean.Data.Article) {
+        val textview = TextView(activity)
+        textview.text = it.title
+        textview.setPadding(10, 10, 10, 10)
+        textview.setBackgroundResource(R.drawable.select_nav_flow_item)
+        textview.setOnClickListener { view ->
+            startActivity(Intent(activity, WebActivity::class.java)
+                    .putExtra(KeyUtils.WEB_URL, it.link))
+        }
+        navFlowLayout.addView(textview)
     }
 
 }

@@ -30,6 +30,10 @@
                 <android.support.v7.widget.SearchView
                     android:id="@+id/homeSeachView"
                     android:layout_width="wrap_content"
+                    app:iconifiedByDefault="true"
+                    android:background="@null"
+                    app:closeIcon="@null"
+                    app:queryBackground="@null"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true" />
 

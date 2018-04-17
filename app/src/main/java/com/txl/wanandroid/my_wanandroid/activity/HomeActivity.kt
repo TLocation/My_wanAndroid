@@ -2,6 +2,8 @@ package com.txl.wanandroid.my_wanandroid.activity
 
 import android.content.Intent
 import android.view.Gravity
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.RadioGroup
 import com.txl.wanandroid.my_wanandroid.R
 import com.txl.wanandroid.my_wanandroid.base.BaseActivity
@@ -26,6 +28,12 @@ class HomeActivity : BaseActivity(), RadioGroup.OnCheckedChangeListener {
     }
 
     override fun initView() {
+        var seachImageView = homeSeachView.findViewById<ImageView>(R.id.search_mag_icon)
+        var params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+        params.gravity = Gravity.CENTER_VERTICAL
+        seachImageView.layoutParams = params
+        seachImageView.setImageResource(R.drawable.seach)
+
         home_group.setOnCheckedChangeListener(this)
         var item = homeSide.menu.getItem(0)
         if (islogin) item.title = "我的收藏" else item.title = "立即登录"
@@ -36,7 +44,7 @@ class HomeActivity : BaseActivity(), RadioGroup.OnCheckedChangeListener {
     override fun loadData() {
 
         homeSide.setNavigationItemSelectedListener { item ->
-            if (!islogin) startActivityForResult(Intent(this,LoginActivity::class.java),1)
+            if (!islogin) startActivityForResult(Intent(this, LoginActivity::class.java), 1)
             true
         }
         homeSide.getHeaderView(0).setOnClickListener { toast("dsadsadsa") }
