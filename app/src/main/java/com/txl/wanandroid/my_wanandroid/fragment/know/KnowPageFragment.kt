@@ -1,5 +1,6 @@
 package com.txl.wanandroid.my_wanandroid.fragment.know
 
+import android.os.Bundle
 import com.txl.wanandroid.my_wanandroid.base.BaseFragment
 
 /**
@@ -16,15 +17,17 @@ import com.txl.wanandroid.my_wanandroid.base.BaseFragment
 
 class KnowPageFragment: BaseFragment() {
     override fun getLayoutId(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return 0
     }
 
     override fun init() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun loadData() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getBundle(bundle: Bundle) {
+        super.getBundle(bundle)
     }
 
 }
