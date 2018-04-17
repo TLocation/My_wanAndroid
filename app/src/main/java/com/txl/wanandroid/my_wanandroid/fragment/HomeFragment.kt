@@ -20,9 +20,13 @@ import com.txl.wanandroid.my_wanandroid.net.response.GsonResponse
 import com.txl.wanandroid.my_wanandroid.utils.KeyUtils
 import com.txl.wanandroid.my_wanandroid.utils.UrlUtils
 import com.txl.wanandroid.my_wanandroid.view.DividerUtils
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.home_header_vp.*
 import java.util.*
+import java.util.concurrent.TimeUnit
+import kotlin.concurrent.timerTask
 
 /**
  * 项目名称：玩Android
@@ -42,10 +46,6 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemClickListener {
     lateinit var homeBanner: ArrayList<HomeBanner.Data>
 
     var PAGE: Int = 0
-
-    lateinit var timer: Timer
-
-    lateinit var task: TimerTask
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_home
@@ -104,22 +104,11 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemClickListener {
 
         home_head_vp.adapter = imgAdapter
 
-        timer = Timer(true)
-
-        task = object : TimerTask() {
-            override fun run() {
-
-                activity.runOnUiThread {
-
-//                    home_head_vp.currentItem = home_head_vp.currentItem + 1
-
-                    Log.e("Timer", System.currentTimeMillis().toString())
-
+        Observable.interval(3, 3, TimeUnit.SECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    home_head_vp.currentItem = home_head_vp.currentItem + 1
                 }
-            }
-        }
-
-        timer.schedule(task, 3000)
 
     }
 
@@ -158,7 +147,7 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemClickListener {
     override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
 
         toast("跳转...$p2")
-        var intent  = Intent(activity,WebActivity::class.java)
+        var intent  = Intent(activity, WebActivity::class.java)
         intent.putExtra(KeyUtils.WEB_URL,homeList[p2].link)
         startActivity(intent)
 
@@ -167,7 +156,6 @@ class HomeFragment : BaseFragment(), AdapterView.OnItemClickListener {
     override fun onDestroyView() {
         super.onDestroyView()
 
-        timer.cancel()
 
     }
 }
