@@ -1,16 +1,20 @@
 package com.txl.wanandroid.my_wanandroid.fragment
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.os.Parcelable
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import com.txl.wanandroid.my_wanandroid.R
+import com.txl.wanandroid.my_wanandroid.activity.KnowkedgeTabActivity
 import com.txl.wanandroid.my_wanandroid.adapter.KnowledgeListAdapter
 import com.txl.wanandroid.my_wanandroid.base.BaseFragment
 import com.txl.wanandroid.my_wanandroid.bean.knowledge.KnowledgeBean
 import com.txl.wanandroid.my_wanandroid.net.MyOkhttp
 import com.txl.wanandroid.my_wanandroid.net.response.GsonResponse
+import com.txl.wanandroid.my_wanandroid.utils.KeyUtils
 import com.txl.wanandroid.my_wanandroid.utils.UrlUtils
 import com.txl.wanandroid.my_wanandroid.view.DividerUtils
 import kotlinx.android.synthetic.main.fragment_knowledge.*
@@ -48,10 +52,10 @@ class KnowledgeFragment : BaseFragment(), AdapterView.OnItemClickListener {
         manager.orientation = LinearLayoutManager.VERTICAL
 
         knowledge_rv.layoutManager = manager
-        knowledge_rv.addItemDecoration(DividerUtils(activity,LinearLayoutManager
-                .HORIZONTAL,20,activity.getColor(R.color.white)))
+        knowledge_rv.addItemDecoration(DividerUtils(activity, LinearLayoutManager
+                .HORIZONTAL, 20, activity.getColor(R.color.white)))
 
-        adapter = KnowledgeListAdapter(activity,R.layout.knowledge_list_item, knowledgeList, this)
+        adapter = KnowledgeListAdapter(activity, R.layout.knowledge_list_item, knowledgeList, this)
 
         knowledge_rv.adapter = adapter
     }
@@ -75,7 +79,11 @@ class KnowledgeFragment : BaseFragment(), AdapterView.OnItemClickListener {
 
     }
 
-    override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-
+    override fun onItemClick(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+        startActivity(Intent(activity, KnowkedgeTabActivity::class.java).putExtra(KeyUtils
+                .KNOW_KEY_TITLE, knowledgeList[position].name).putParcelableArrayListExtra(KeyUtils.KNOW_KEY_CID,
+                knowledgeList[position].children as java.util.ArrayList<out Parcelable>))
     }
 }
+
+

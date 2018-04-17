@@ -22,12 +22,18 @@ object KeyUtils {
 
     //--------------------------------------web-----------------------------
     const val WEB_URL = "weburl"
-//--------------------------------------KnowkedgeTabActivity------------------------
-
+    //--------------------------------------KnowkedgeTabActivity------------------------
     //跳转到知识体系二级页面的title
     const val KNOW_KEY_TITLE = "know_title"
     //知识体系二级页面 cid集合 包含名字  cid
     const val KNOW_KEY_CID = "know_cid"
+    //-----------------------------knowPageFragmnet-----------------------------------
+    //知识体系分页cid
+    const val KNOW_PAGE_KEY_CID = "page_cid"
+
+
+
+
     //--------------------------------sp-----------------------------------------
     const val IS_LOGIN = "isLogin"
 }

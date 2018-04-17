@@ -38,12 +38,19 @@ object UrlUtils {
     const val HOME_BANNER = "${BASE_URL}banner/json"
 
     /**
+     * 知识体系文章
+     */
+    /**
      *
      * 首页列表
      */
 
     const val GET_KNOWLEDGE_LIST = "${BASE_URL}tree/json"
 
+    /**
+     * 知识体系二级列表
+     */
+    val GET_KNOW_PAGE_LIST = { page: Int -> "${BASE_URL}article/list/$page/json" }
     /**
     *
     * 项目table
