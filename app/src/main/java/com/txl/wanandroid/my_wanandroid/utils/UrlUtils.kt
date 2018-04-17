@@ -37,8 +37,18 @@ object UrlUtils {
      */
     const val HOME_BANNER = "${BASE_URL}banner/json"
 
+    /**
+     *
+     * 首页列表
+     */
+
     const val GET_KNOWLEDGE_LIST = "${BASE_URL}tree/json"
 
+    /**
+    *
+    * 项目table
+    */
+    const val PROJECT_TABLE = "${BASE_URL}project/tree/json"
 
     /**
      * 导航文章

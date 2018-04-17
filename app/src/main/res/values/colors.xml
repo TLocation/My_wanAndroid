@@ -11,4 +11,7 @@
     <color name="yellow_home">#F39C12</color>
     <color name="nav_slect">#115E56</color>
     <color name="nav_no">#049486</color>
+    <color name="project_tab_start">#049486</color>
+    <color name="project_tab_center">#FF3FCC2D</color>
+    <color name="project_tab_end">#FFCABA08</color>
 </resources>
